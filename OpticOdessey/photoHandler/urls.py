@@ -3,6 +3,5 @@ from . import views
 import uuid
 
 urlpatterns = [
-    path('', views.index ),
-    path('/<uuid:id>/', views.result, name='result_page'),
+    path('', views.index, name="main" )
 ]
