@@ -14,8 +14,8 @@ def index(request):
             instance = form.save(commit=False)
             my_id = instance.my_id
             instance.save()
-            new_image = image_processing(instance)
-            return render(request, 'photoHandler/index.html', {'image':instance,'processed_image':new_image})
+            image = image_processing(instance)
+            return render(request, 'photoHandler/index.html', {'image':instance,'image_output': image})
     else:
         form = ImageUploadForm()
     return render(request, 'photoHandler/index.html', {'form':form})
@@ -27,6 +27,6 @@ def page_not_found(request, exception):
 # Funcion processing image 
 def image_processing(image):
     # Создаем объект ProcessedImage из изображения с измененным разрешением
-    processed_image = ProcessedImage.create_from_image(image.image.path, 1024, 600)
+    processed_image = ProcessedImage.create_from_image(image.image.path)
 
     return processed_image
