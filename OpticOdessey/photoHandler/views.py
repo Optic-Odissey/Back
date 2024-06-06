@@ -20,9 +20,8 @@ def index(request):
         form = ImageUploadForm()
     return render(request, 'photoHandler/index.html', {'form':form})
 
-def page_not_found(request, exception):
-    return HttpResponseNotFound("<a>Not found 404</a>")
-
+def page_not_found_view(request, exception):
+    return render(request, 'photoHandler/404.html', status=404)
 
 # Funcion processing image 
 def image_processing(image):
